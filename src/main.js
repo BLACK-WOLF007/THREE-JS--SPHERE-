@@ -13,14 +13,16 @@ document.body.appendChild(renderer.domElement);
 //texture loader
 const textureLoader = new THREE.TextureLoader();
 const texture = textureLoader.load('/static/textures/door/color.jpg'); 
-
+texture.colorSpace= THREE.SRGBColorSpace;
+texture.repeat.x=2;
+texture.wrapS= THREE.MirroredRepeatWrapping;
 
 // Add controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
 // Create a cube
-const geometry = new THREE.SphereGeometry(1, 32, 32);  // Add segments for better UV mapping
+const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({ 
     map: texture  // Apply the texture to the material
 });
